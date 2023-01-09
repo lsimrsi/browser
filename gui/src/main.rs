@@ -1,4 +1,4 @@
-use gui_lib;
+use gui_lib::{self, State};
 
 use winit::{
     event::*,
@@ -6,10 +6,18 @@ use winit::{
     window::WindowBuilder,
 };
 
-pub fn run() {
+pub async fn run() {
     env_logger::init();
     let event_loop = EventLoop::new();
     let window = WindowBuilder::new().build(&event_loop).unwrap();
+    
+    let size = window.inner_size();
+    let size = gui_lib::InnerSize {
+        width: size.width,
+        height: size.height,
+    };
+
+    let mut state = State::new(&window, size).await;
 
     event_loop.run(move |event, _, control_flow| match event {
         Event::WindowEvent {
@@ -33,5 +41,5 @@ pub fn run() {
 }
 
 fn main() {
-    run();
+    pollster::block_on(run());
 }
