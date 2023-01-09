@@ -1,4 +1,4 @@
-use gui_lib::{self, State};
+use gui_lib::{self, State, InnerSize};
 
 use winit::{
     event::*,
@@ -34,6 +34,20 @@ pub async fn run() {
                     },
                 ..
             } => *control_flow = ControlFlow::Exit,
+            WindowEvent::Resized(physical_size) => {
+                let new_size = InnerSize {
+                    width: physical_size.width,
+                    height: physical_size.height,
+                };
+                state.resize(new_size);
+            }
+            WindowEvent::ScaleFactorChanged { new_inner_size, .. } => {
+                let new_size = InnerSize {
+                    width: (**new_inner_size).width,
+                    height: (**new_inner_size).height,
+                };
+                state.resize(new_size);
+            }
             _ => {}
         },
         _ => {}
