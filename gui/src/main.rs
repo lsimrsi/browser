@@ -32,3 +32,6 @@ pub fn run() {
     });
 }
 
+fn main() {
+    run();
+}
