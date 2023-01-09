@@ -77,8 +77,13 @@ impl State {
             }
     }
 
-    fn resize(&mut self, new_size: InnerSize<u32>) {
-        todo!()
+    pub fn resize(&mut self, new_size: InnerSize<u32>) {
+        if new_size.width > 0 && new_size.height > 0 {
+            self.size = new_size;
+            self.config.width = self.size.width;
+            self.config.height = self.size.height;
+            self.surface.configure(&self.device, &self.config);
+        }
     }
 
     // fn input(&mut self, event: &WindowEvent) -> bool {
