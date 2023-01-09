@@ -6,7 +6,7 @@ pub struct InnerSize<P> {
 }
 
 // lib.rs
-pub struct State {
+pub struct GraphicsState {
     surface: wgpu::Surface,
     device: wgpu::Device,
     queue: wgpu::Queue,
@@ -15,7 +15,7 @@ pub struct State {
 }
 
 
-impl State {
+impl GraphicsState {
     // Creating some of the wgpu types requires async code
     pub async fn new<T: HasRawWindowHandle + HasRawDisplayHandle>(window: &T, size: InnerSize<u32>) -> Self {
         // The instance is a handle to our GPU

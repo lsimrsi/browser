@@ -1,4 +1,4 @@
-use gui_lib::{self, State, InnerSize};
+use gui_lib::{self, GraphicsState, InnerSize};
 
 use winit::{
     event::*,
@@ -17,7 +17,7 @@ pub async fn run() {
         height: size.height,
     };
 
-    let mut state = State::new(&window, size).await;
+    let mut state = GraphicsState::new(&window, size).await;
 
     event_loop.run(move |event, _, control_flow| match event {
         Event::WindowEvent {
