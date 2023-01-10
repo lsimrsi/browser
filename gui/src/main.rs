@@ -1,3 +1,4 @@
+
 use gui_lib::{self, GraphicsState, InnerSize};
 
 use winit::{
@@ -10,7 +11,7 @@ pub async fn run() {
     env_logger::init();
     let event_loop = EventLoop::new();
     let window = WindowBuilder::new().build(&event_loop).unwrap();
-    
+
     let size = window.inner_size();
     let size = gui_lib::InnerSize {
         width: size.width,
@@ -48,7 +49,7 @@ pub async fn run() {
                 };
                 state.resize(new_size);
             }
-            
+
             _ => {}
         },
         Event::RedrawRequested(window_id) if window_id == window.id() => {
@@ -63,7 +64,7 @@ pub async fn run() {
                 Err(e) => {
                     eprintln!("{:?}", e);
                     *control_flow = ControlFlow::Exit
-                },
+                }
             }
         }
         Event::MainEventsCleared => {

@@ -8,3 +8,4 @@ edition = "2021"
 [dependencies]
 wgpu = "0.14.2"
 raw-window-handle = "0.5.0"
+bytemuck = { version = "1.12.3", features = [ "derive" ]}
