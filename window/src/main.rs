@@ -14,7 +14,6 @@ pub async fn run() {
         .expect("Should have been able to read the file");
     let nodes = Parser::parse(html);
     println!("nodes: {:?}", nodes);
-    return;
     let event_loop = EventLoop::new();
     let window = WindowBuilder::new().build(&event_loop).unwrap();
 
