@@ -1,5 +1,6 @@
+use std::fs;
 
-use wb::{self, GraphicsState, InnerSize};
+use wb::{self, html_parser::Parser, GraphicsState, InnerSize};
 
 use winit::{
     event::*,
@@ -9,6 +10,11 @@ use winit::{
 
 pub async fn run() {
     env_logger::init();
+    let html = fs::read_to_string("./window/src/basic.html")
+        .expect("Should have been able to read the file");
+    let nodes = Parser::parse(html);
+    println!("nodes: {:?}", nodes);
+    return;
     let event_loop = EventLoop::new();
     let window = WindowBuilder::new().build(&event_loop).unwrap();
 
