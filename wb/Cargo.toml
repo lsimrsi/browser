@@ -1,13 +1,11 @@
 [package]
-name = "gui"
+name = "wb"
 version = "0.1.0"
 edition = "2021"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-gui-lib = { path = "../gui-lib" }
-winit = "0.27.5"
-env_logger = "0.10.0"
-log = "0.4.17"
-pollster = "0.2.5"
+wgpu = "0.14.2"
+raw-window-handle = "0.5.0"
+bytemuck = { version = "1.12.3", features = [ "derive" ]}

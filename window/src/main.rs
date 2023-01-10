@@ -1,5 +1,5 @@
 
-use gui_lib::{self, GraphicsState, InnerSize};
+use wb::{self, GraphicsState, InnerSize};
 
 use winit::{
     event::*,
@@ -13,7 +13,7 @@ pub async fn run() {
     let window = WindowBuilder::new().build(&event_loop).unwrap();
 
     let size = window.inner_size();
-    let size = gui_lib::InnerSize {
+    let size = wb::InnerSize {
         width: size.width,
         height: size.height,
     };
