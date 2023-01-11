@@ -1,6 +1,7 @@
 use raw_window_handle::{HasRawDisplayHandle, HasRawWindowHandle};
 use wgpu::util::DeviceExt;
 
+pub mod css_parser;
 pub mod html_parser;
 mod node;
 pub mod vertex;
