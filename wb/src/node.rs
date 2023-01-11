@@ -52,7 +52,7 @@ enum NodeType {
 impl fmt::Display for NodeType {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         match self {
-            NodeType::Text(s) => writeln!(f, "  text: {}", s),
+            NodeType::Text(s) => writeln!(f, "  text: \"{}\"", s),
             NodeType::Element(ele_data) => {
                 writeln!(f, "{}, attrs: {:?}", ele_data.tag_name, ele_data.attributes)
             }
