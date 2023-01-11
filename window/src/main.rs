@@ -13,7 +13,7 @@ pub async fn run() {
     let html = fs::read_to_string("./window/src/basic.html")
         .expect("Should have been able to read the file");
     let nodes = Parser::parse(html);
-    println!("nodes: {:?}", nodes);
+    println!("nodes:\n{}", nodes);
     let event_loop = EventLoop::new();
     let window = WindowBuilder::new().build(&event_loop).unwrap();
 

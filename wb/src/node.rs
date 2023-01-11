@@ -3,7 +3,6 @@ use std::fmt;
 
 pub type AttrMap = HashMap<String, String>;
 
-#[derive(Debug)]
 pub struct Node {
     // data common to all nodes:
     children: Vec<Node>,
@@ -31,23 +30,36 @@ impl Node {
     }
 }
 
-// impl fmt::Display for Node {
-//     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-//         // Write strictly the first element into the supplied output
-//         // stream: `f`. Returns `fmt::Result` which indicates whether the
-//         // operation succeeded or failed. Note that `write!` uses syntax which
-//         // is very similar to `println!`.
-//         write!(f, "{}", self.0)
-//     }
-// }
+impl fmt::Display for Node {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        // Write strictly the first element into the supplied output
+        // stream: `f`. Returns `fmt::Result` which indicates whether the
+        // operation succeeded or failed. Note that `write!` uses syntax which
+        // is very similar to `println!`.
+        write!(f, "{}", self.node_type).expect("nah");
+        for node in &self.children {
+            write!(f, "{}", node).expect("nah again");
+        }
+        write!(f, "")
+    }
+}
 
-#[derive(Debug)]
 enum NodeType {
     Text(String),
     Element(ElementData),
 }
 
-#[derive(Debug)]
+impl fmt::Display for NodeType {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        match self {
+            NodeType::Text(s) => writeln!(f, "  text: {}", s),
+            NodeType::Element(ele_data) => {
+                writeln!(f, "{}, attrs: {:?}", ele_data.tag_name, ele_data.attributes)
+            }
+        }
+    }
+}
+
 struct ElementData {
     tag_name: String,
     attributes: AttrMap,
